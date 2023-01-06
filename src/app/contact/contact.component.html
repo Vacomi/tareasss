@@ -1,0 +1,41 @@
+<h1>Formulario de Contacto</h1>
+<form (ngSubmit)="onSubmit(contactForm.value)" #contactForm="ngForm">
+    <!-- Nombre -->
+    <div class="mb-4">
+        <label for="name" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="model.name" required #name="ngModel">
+        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Este campo es requerido.</div>
+    </div>
+
+    <!-- Mayor de Edad -->
+    <div class="mb-4 form-check">
+        <label for="checkAdult" class="form-label">Eres mayor de edad?</label>
+        <input type="checkbox" class="form-check-input" name="age" id="checkAdult" [(ngModel)]="model.age" required #edad="ngModel">
+        <div [hidden]="edad.valid || edad.pristine" class="alert alert-danger">Este campo es requerido.</div>
+    </div>
+
+    <!-- Select -->
+    <div class="mb-4">
+        <label for="departament" class="form-label">Departamento:</label>
+        <select name="departament" id="departament" class="form-select" [(ngModel)]="model.department">
+            <option selected>seleccione:</option>
+            <option value="marketing">Marketing</option>
+            <option value="ventas">Ventas</option>
+            <option value="otro">Otro</option>
+        </select>
+    </div>
+
+    <!-- TEXT AREA -->
+    <div class="mb-4">
+        <label for="comment" class="form-label">Deja tu comentario:</label>
+        <textarea type="text" class="form-control" name="comment" id="comment" rows="4" placeholder="comenta pz hijo..." [(ngModel)]="model.comment" required #coment="ngModel"></textarea>
+        <div [hidden]="coment.valid || coment.pristine" class="alert alert-danger">Este campo es requerido.</div>
+    </div>
+
+    <!-- Boton -->
+    <div class="float-end d-grid gap-2 col-4">
+        <button [disabled]="contactForm.invalid" type="submit" class="btn btn-info btn-lg">Enviar</button>
+    </div>
+</form>
+
+<pre>{{contactForm.value | json}}</pre>
